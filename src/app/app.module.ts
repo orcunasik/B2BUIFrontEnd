@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { UiModule } from './ui/ui.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import {HttpClientModule} from '@angular/common/http'
 
 @NgModule({
   declarations: [
@@ -18,9 +19,14 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
     BrowserAnimationsModule,
     ToastrModule,
     SweetAlert2Module.forRoot(),
-    UiModule
+    UiModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide : 'apiUrl' ,useValue:'https://localhost:7146/api'
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
