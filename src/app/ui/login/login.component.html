@@ -9,15 +9,15 @@
       <div class="col-md-4">
         <form #loginForm="ngForm" autocomplete="off">
         <div class="form-group">
-          <label for="" class="label-control">Mail Adresi</label>
-          <input type="email" ngModel name="email" #email required email class="form-control">
+          <label for="email" class="label-control">Mail Adresi</label>
+          <input type="email" id="email" ngModel name="email" #email required email class="form-control">
         </div>
         <div class="form-group">
-          <label for="" class="label-control">Şifre</label>
-          <input type="password" ngModel name="password" #password required class="form-control">
+          <label for="password" class="label-control">Şifre</label>
+          <input type="password" id="password" ngModel name="password" #password required class="form-control">
         </div>
         <div class="form-group">
-          <button class="btn btn-primary btn-block" (click)="loginForm" [disabled]="!loginForm.valid">Giriş Yap</button>
+          <button class="btn btn-primary btn-block" (click)="login(loginForm)" [disabled]="!loginForm.valid">Giriş Yap</button>
         </div>
       </form>
       </div>
