@@ -17,7 +17,7 @@ import {HttpClientModule} from '@angular/common/http'
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    ToastrModule,
+    ToastrModule.forRoot(),
     SweetAlert2Module.forRoot(),
     UiModule,
     HttpClientModule
