@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../../login/service/auth.service';
 
 @Component({
   selector: 'app-detail',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DetailComponent implements OnInit {
 
-  constructor() { }
+  isAuth : boolean =false;
+  constructor(
+    private authService : AuthService
+  ) { }
 
   ngOnInit(): void {
+    this.isAuth = this.authService.isAuth();
   }
 
 }
