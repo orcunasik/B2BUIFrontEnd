@@ -17,14 +17,17 @@ import {HttpClientModule} from '@angular/common/http'
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot(),
+    ToastrModule.forRoot({
+      closeButton:true,
+      progressBar: true
+    }),
     SweetAlert2Module.forRoot(),
     UiModule,
     HttpClientModule
   ],
   providers: [
     {
-      provide : 'apiUrl' ,useValue:'https://localhost:7146/api'
+      provide : 'apiUrl' ,useValue:'https://localhost:7146/api/'
     }
   ],
   bootstrap: [AppComponent]
