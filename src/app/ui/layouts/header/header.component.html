@@ -1,18 +1,4 @@
 <header id="home" class="welcome-hero">
-
-  <div id="header-carousel" class="carousel slide carousel-fade" data-ride="carousel">
-    <!--/.carousel-indicator -->
-     <ol class="carousel-indicators">
-      <li data-target="#header-carousel" data-slide-to="0" class="active"><span class="small-circle"></span></li>
-      <li data-target="#header-carousel" data-slide-to="1"><span class="small-circle"></span></li>
-      <li data-target="#header-carousel" data-slide-to="2"><span class="small-circle"></span></li>
-    </ol><!-- /ol-->
-    <!--/.carousel-indicator -->
-
-
-
-  </div><!--/#header-carousel-->
-
   <!-- top-area Start -->
   <div class="top-area">
     <div class="header-area">
@@ -60,8 +46,8 @@
                     <ul class="nav navbar-nav navbar-center" data-in="fadeInDown" data-out="fadeOutUp">
                         <li class="" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><a>Ana Sayfa</a></li>
                         <li *ngIf="isAuth" class="" routerLink="/order" routerLinkActive="active" routerLinkOptions="{exact: true}"><a>Siparişler</a></li>
-                        <li class="" routerLink="/login" routerLinkActive="active" routerLinkOptions="{exact: true}"><a>Giriş</a></li>
-                        <li *ngIf="!isAuth" class=""><a href="http://localhost:4200/" target="_blank">Admin Girişi</a></li>
+                        <li *ngIf="!isAuth" class="" routerLink="/login" routerLinkActive="active" routerLinkOptions="{exact: true}"><a>Giriş</a></li>
+                        <li class=""><a href="http://localhost:4200/" target="_blank">Admin Girişi</a></li>
                         <li *ngIf="isAuth" class=""><a (click)="logout()">Çıkış</a></li>
                     </ul><!--/.nav -->
                 </div><!-- /.navbar-collapse -->
