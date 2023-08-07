@@ -3,7 +3,7 @@ import { Inject, Injectable } from '@angular/core';
 import { LoginModel } from '../model/login-model';
 import { Router } from '@angular/router';
 import { ErrorService } from 'src/app/services/error.service';
-import { catchError, tap, throwError } from 'rxjs';
+import { catchError, map, throwError } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
@@ -20,7 +20,7 @@ export class AuthService {
   ) { }
 
   isAuth(): boolean{
-    if(localStorage.getItem("token")){
+    if(localStorage.getItem("customerToken")){
       return true;
     }
     return false;
@@ -32,8 +32,8 @@ export class AuthService {
     model.password = loginForm.value.password;
 
     this.httpClient.post(api, model).pipe(
-      tap((res: any) => {
-        localStorage.setItem("token", res.data.customerAccessToken);
+      map((res: any) => {
+        localStorage.setItem("customerToken", res.data.customerAccessToken);
         this.router.navigate(["/"]);
         this.toastr.success("Giriş Başarılı");
       }),
