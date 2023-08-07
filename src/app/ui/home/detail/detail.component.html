@@ -7,9 +7,9 @@
                 <div class="row">
                     <div class="col-md-10">
                         <div class="row">
-                            <div class="col-sm-4">
+                            <div class="col-sm-4" *ngFor="let productDetail of productDetails">
                                 <div class="single-feature">
-                                    <img src="assets/images/features/f1.jpg" alt="feature image">
+                                    <img src="http://localhost:4200/assets/admin/img/{{productDetail.imageUrl}}" alt="feature image">
                                 </div>
                             </div>
                         </div>
