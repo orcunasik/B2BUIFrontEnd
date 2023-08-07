@@ -7,14 +7,29 @@
     <div class="feature-content">
       <div class="col-md-4"></div>
       <div class="col-md-4">
-        <form #loginForm="ngForm" autocomplete="off">
+        <form #loginForm="ngForm">
         <div class="form-group">
           <label for="email" class="label-control">Mail Adresi</label>
-          <input type="email" id="email" ngModel name="email" #email required email class="form-control">
+          <input
+            type="email"
+            autocomplete="off"
+            ngModel
+            name="email"
+            #email
+            required
+            email
+            class="form-control">
         </div>
         <div class="form-group">
           <label for="password" class="label-control">Şifre</label>
-          <input type="password" id="password" ngModel name="password" #password required class="form-control">
+          <input
+            type="password"
+            autocomplete="off"
+            ngModel
+            name="password"
+            #password
+            required
+            class="form-control">
         </div>
         <div class="form-group">
           <button class="btn btn-primary btn-block" (click)="login(loginForm)" [disabled]="!loginForm.valid">Giriş Yap</button>
