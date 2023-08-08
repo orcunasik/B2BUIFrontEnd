@@ -12,10 +12,13 @@ export class CustomerDecodeService {
 
 
   getCustomerId():number{
-    let decode = this.jwtHelper.decodeToken(localStorage.getItem("customerToken"));
-
-    let customerId = Object.keys(decode).filter(p => p.endsWith("/nameidentifier"))[0];
-    return +decode[customerId];
+    try {
+      let decode = this.jwtHelper.decodeToken(localStorage.getItem("customerToken"));
+      let customerId = Object.keys(decode).filter(p => p.endsWith("/nameidentifier"))[0];
+      return +decode[customerId];
+    } catch (error) {
+      return 0;
+    }
   }
   getCustomerName():string{
     let decode = this.jwtHelper.decodeToken(localStorage.getItem("customerToken"));
