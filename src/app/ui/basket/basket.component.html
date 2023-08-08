@@ -1,8 +1,8 @@
 <section id="feature" class="feature">
   <div class="container">
     <div class="section-header">
-      <h2>Ürün Detayları</h2>
-    </div><!--/.section-header-->
+      <h2>Ürün Sepetiniz</h2>
+    </div>
     <div class="feature-content">
                 <div class="form-group">
                 <table class="table">
@@ -17,14 +17,18 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Koltuk Takımı</td>
-                        <td>10</td>
-                        <td>100</td>
-                        <td>1000</td>
+                    <tr *ngFor="let basket of baskets let index = index">
+                        <td [innerText]="index+1"></td>
+                        <td [innerText]="basket.productName"></td>
+                        <td [innerText]="basket.quantity"></td>
+                        <td [innerText]="basket.price | currency:'TRY':'symbol-narrow':'1.2-2'"></td>
+                        <td [innerText]="basket.total | currency:'TRY':'symbol-narrow':'1.2-2'"></td>
                         <td>
-                          <button class="btn btn-danger" [swal]="deleteSwal">Sil</button>
+                          <button
+                            class="btn btn-danger"
+                            [swal]="deleteSwal" (confirm)="delete(basket)">
+                            Sil
+                          </button>
                         </td>
                     </tr>
                 </tbody>
@@ -33,21 +37,40 @@
             <hr>
             <div class="form-group">
                 <div class="text-center">
-                    <h4>Toplam Tutar: </h4> 1000
+                    <h4>Toplam Tutar: </h4> 
+                    <strong>
+                      <em>{{grandTotal | currency:'TRY':'symbol-narrow':'1.2-2'}}</em>
+                    </strong>
+                    <button 
+                    *ngIf="baskets.length > 0"
+                    class="btn btn-primary btn-block"
+                    [swal]="createSwal" (confirm)="createOrder()">
+                      Sipariş Oluştur
+                    </button>
                 </div>
             </div>
     </div>
-  </div><!--/.container-->
-
+  </div>
 </section>
 
+<swal
+  #createSwal
+  title="Sipariş Oluştur"
+  text="Ürünü Sipariş Etmek İstiyor Musunuz?"
+  type="question"
+  [showCancelButton]="true"
+  [focusCancel]="true"
+  [swalOptions]="{ confirmButtonText: 'Onayla', cancelButtonText: 'Vazgeç' }"
+  >
+</swal>
 
 <swal
   #deleteSwal
-  title="Sil?"
-  text="Ürünü sepetten silmek istiyor musunuz?"
+  title="Ürünü Sil!!"
+  text="Ürünü Sepetten Silmek İstiyor Musunuz?"
   type="question"
   [showCancelButton]="true"
   [focusCancel]="true"
   [swalOptions]="{ confirmButtonText: 'Sil', cancelButtonText: 'Vazgeç' }"
-  ></swal>
+  >
+</swal>
