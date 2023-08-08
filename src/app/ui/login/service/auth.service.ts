@@ -44,7 +44,7 @@ export class AuthService {
     ).subscribe();
   }
   logout(){
-    localStorage.removeItem("token");
+    localStorage.removeItem("customerToken");
     this.router.navigate(["/login"]);
     this.toastr.info("Çıkış Başarılı");
   }
