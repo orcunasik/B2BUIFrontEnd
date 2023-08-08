@@ -4,6 +4,14 @@
       <h2>Siparişler</h2>
     </div>
     <div class="feature-content">
+      <div class="feature-content">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Aranacak kelimeyi yazın"
+          [(ngModel)]="filterText"
+          [ngModelOptions]="{standalone : true}">
+      </div>
       <div class="form-group">
         <table class="table">
           <thead>
@@ -18,35 +26,47 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>1</td>
-              <td>Onay bekliyor</td>
-              <td>25.06.2022</td>
+            <tr *ngFor="let order of orders
+            | orderPipe : filterText
+             let index = index ">
+              <td [innerText]="index+1"></td>
+              <td [innerText]="order.status">r</td>
+              <td [innerText]="order.date | date: 'dd.MM.yyyy'"></td>
               <td>
-                <a routerLink="/order-detail/4">S00000000001</a></td>
-              <td>100</td>
-              <td>1000</td>
+                <button 
+                  class="badge badge-info"
+                  data-toggle="tooltip" 
+                  data-placement="bottom" 
+                  title="Sipariş Detayına Git"
+                  routerLink="/order-detail/{{order.id}}"
+                  [innerText]="order.orderNumber">
+                </button>
+              </td>
+              <td [innerText]="order.quantity"></td>
+              <td [innerText]="order.total | currency:'TRY':'symbol-narrow':'1.2-2'"></td>
               <td>
-                <button class="btn btn-danger" [swal]="deleteSwal">Siparişi Sil</button>
+                <button
+                  class="btn btn-danger"
+                  *ngIf="order.status == 'Onay Bekliyor' || order.status == 'Reddedilen'"
+                  [swal]="deleteSwal" (confirm)="delete(order)">
+                  Siparişi Sil
+                </button>
               </td>
             </tr>
           </tbody>
         </table>
       </div>
-
     </div>
   </div>
-
 </section>
-
 
 
 <swal
   #deleteSwal
-  title="Sil?"
-  text="Siparişi silmek istiyor musunuz?"
+  title="Sipariş İptali"
+  text="Siparişi İptal Etmek İstiyor Musunuz?"
   type="question"
   [showCancelButton]="true"
   [focusCancel]="true"
-  [swalOptions]="{ confirmButtonText: 'Sil', cancelButtonText: 'Vazgeç' }"
+  [swalOptions]="{ confirmButtonText: 'Onayla', cancelButtonText: 'Vazgeç' }"
   ></swal>
